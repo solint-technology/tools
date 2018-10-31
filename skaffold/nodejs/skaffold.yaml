@@ -1,0 +1,32 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - imageName: tcmsolintdev.azurecr.io/skaffold-nodejs
+    workspace: .
+  local: {}
+deploy:
+#  kubectl:
+#    manifests:
+#    - paths:
+#      - k8s-app.yml
+#      parameters:
+#        IMAGE_NAME: node-app
+  helm:
+    releases:
+    - name: skaffold-nodejs-helm
+      chartPath: helm
+      namespace: skaffold
+      #wait: true
+      #valuesFilePath: helm-skaffold-values.yaml
+      values:
+        image: tcmsolintdev.azurecr.io/skaffold-nodejs
+      #overrides builds an override values.yaml file to run with the helm deploy
+      #overrides:
+      # some:
+      #   key: someValue
+      #setValues get appended to the helm deploy with --set.
+      #setValues:
+        #some.key: someValue

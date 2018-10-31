@@ -1,0 +1,27 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+- name: "check superuser"
+  command: "whoami"
+  expectedOutput: ["swuser"]
+
+metadataTest:
+  env:
+  - key: "HOME_DIST"
+    value: "/home"
+  #exposedPorts: ["8080", "2345"]
+  #volumes: ["/test"]
+  entrypoint: []
+  cmd: ["/bin/bash"]
+  #workdir: ["/app"]
+
+#fileExistenceTests:
+# - name: 'entrypoint'
+#   path: '/entrypoint.sh'
+#   shouldExist: true
+#   permissions: '-rwxr-xr-x'
+
+#fileContentTests:
+# - name: 'entrypoint'
+#   path: '/entrypoint.sh'
+#   expectedContents: ['echo']

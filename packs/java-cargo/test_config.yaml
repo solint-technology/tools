@@ -1,0 +1,33 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+- name: "check superuser"
+  command: "whoami"
+  expectedOutput: ["swuser"]
+
+metadataTest:
+  exposedPorts: ["8181"]
+  volumes: []
+  cmd: ["/entrypoint.sh"]
+
+fileExistenceTests:
+ - name: 'server.conf'
+   path: '$CARGOPATH/etc/server.conf'
+   shouldExist: true
+   permissions: '-rw-r--r--'
+
+commandTests:
+- name: 'Startup script ending with exec'
+  command: "tail"
+  args: [ "-n", "1", "/entrypoint.sh" ]
+  expectedOutput: ['exec .*']
+
+- name: 'server.conf is not empty (not 0 character)'
+  command: "bash"
+  args: ["-c", "cat $CARGOPATH/etc/server.conf | tr -d [:space:] | wc -c"]
+  excludedOutput: ["0"]
+
+- name: 'server.sh exists'
+  command: "bash"
+  args: ["-c", "[ -f $SERVERSH ]"]
+  exitCode: 0

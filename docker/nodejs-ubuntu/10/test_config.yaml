@@ -1,0 +1,36 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+- name: "node version"
+  #setup: [["virtualenv", "/env"], ["pip", "install", "gunicorn", "flask"]]
+  command: "node"
+  args: ["--version"]
+  expectedOutput: ["v8.11.4"]
+- name: "check superuser"
+  command: "whoami"
+  expectedOutput: ["swuser"]
+- name: "node installation"
+  command: "which"
+  args: ["node"]
+  expectedOutput: ["/usr/bin/node\n"]
+
+metadataTest:
+#  env:
+#  - key: "JAVA_HOME"
+#    value: "/opt/jdk"
+  #exposedPorts: ["8080", "2345"]
+  #volumes: ["/test"]
+  entrypoint: []
+  cmd: ["/bin/bash"]
+  #workdir: ["/app"]
+
+#fileExistenceTests:
+# - name: 'entrypoint'
+#   path: '/entrypoint.sh'
+#   shouldExist: true
+#   permissions: '-rwxr-xr-x'
+
+#fileContentTests:
+# - name: 'entrypoint'
+#   path: '/entrypoint.sh'
+#   expectedContents: ['echo']

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testskaffold
+spec:
+  type: NodePort
+  ports:
+  - name: "testskaffold-service"
+    port: 8080
+    targetPort: 8080
+    nodePort: 30999
+  selector:
+    app: testskaffold

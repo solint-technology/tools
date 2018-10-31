@@ -1,0 +1,25 @@
+# ignore .git and .cache folders
+.git
+.cache
+.editorconfig
+.gitignore
+node_modules
+*.logs
+
+
+*.md
+!README*.md
+README-secret.md
+Jenkinsfile
+skaffold.yaml
+
+k8s/
+
+*.sw?
+.#*
+*#
+*~
+.project
+.settings
+.idea
+*.iml

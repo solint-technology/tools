@@ -1,0 +1,13 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+- name: "check superuser"
+  command: "whoami"
+  expectedOutput: ["swuser"]
+
+metadataTest:
+  env:
+  - key: "HOME_DIST"
+    value: "/home"
+  entrypoint: []
+  cmd: ["/bin/bash"]

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testskaffold
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: testskaffold
+    spec:
+      containers:
+      - image: testskaffold
+        name: testskaffold

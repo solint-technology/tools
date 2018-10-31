@@ -1,0 +1,32 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+#- name: "java version"
+#  command: "java"
+#  args: ["-version"]
+#  expectedOutput: ["1.8.0_191"]
+- name: "check superuser"
+  command: "whoami"
+  expectedOutput: ["swuser"]
+- name: "java installation"
+  command: "which"
+  args: ["java"]
+  expectedOutput: ["/opt/java/jdk/bin/java\n"]
+
+metadataTest:
+  env:
+  - key: "JAVA_HOME"
+    value: "/opt/java/jdk"
+  entrypoint: []
+  cmd: ["/entrypoint.sh"]
+
+fileExistenceTests:
+ - name: 'entrypoint'
+   path: '/entrypoint.sh'
+   shouldExist: true
+
+
+#fileContentTests:
+# - name: 'entrypoint'
+#   path: '/entrypoint.sh'
+#   expectedContents: ['echo']

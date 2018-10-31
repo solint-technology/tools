@@ -1,0 +1,29 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - imageName: skaffold-maven
+    workspace: .
+  local: {}
+deploy:
+#  kubectl:
+#    manifests:
+#    - k8s/*
+  helm:
+    releases:
+    - name: skaffold-maven-helm
+      chartPath: helm
+      namespace: skaffold
+      #wait: true
+      #valuesFilePath: helm-skaffold-values.yaml
+      values:
+        image: skaffold-maven
+      #overrides builds an override values.yaml file to run with the helm deploy
+      #overrides:
+      # some:
+      #   key: someValue
+      #setValues get appended to the helm deploy with --set.
+      #setValues:
+        #some.key: someValue
